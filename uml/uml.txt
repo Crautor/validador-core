@@ -1,0 +1,44 @@
+@startuml
+
+skinparam backgroundColor #FEFEFE
+skinparam padding 10
+
+' Componentes principais
+component AUTH as "AUTH\n(Autenticação)" #E8F5E9
+component CATALOG as "CATALOG\n(Catálogo de Produtos)" #E8F5E9
+component CART as "CART\n(Carrinho de Compras)" #FFF3E0
+component PAYMENT as "PAYMENT\n(Processamento de Pagamento)" #FFEBEE
+component EMAIL as "EMAIL\n(Envio de E-mails)" #F3E5F5
+
+' Dependências internas
+CART ..> CATALOG : requer ICatalogService
+PAYMENT ..> CART : requer ICartService
+PAYMENT ..> EMAIL : requer IEmailService
+
+' Bancos de dados
+database UserDB #D7CCC8
+database ProductDB #D7CCC8
+database CartDB #D7CCC8
+database PaymentDB #D7CCC8
+database EmailDB #D7CCC8
+
+' Conexões com BD
+AUTH --> UserDB
+CATALOG --> ProductDB
+CART --> CartDB
+PAYMENT --> PaymentDB
+EMAIL --> EmailDB
+
+' Atores externos
+actor Cliente
+actor PaymentGateway
+actor EmailProvider
+
+Cliente --> AUTH : login
+Cliente --> CATALOG : busca
+Cliente --> CART : compra
+Cliente --> PAYMENT : paga
+PAYMENT --> PaymentGateway : processa
+EMAIL --> EmailProvider : envia
+
+@enduml
