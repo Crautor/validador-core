@@ -1,1 +1,0 @@
-# Task: Fix POST /api/catalog/products (405/500 -> 201)\n\n**Status:** Fixed compilation error.\n\n**Steps:**\n1. [x] Diagnose\n2. [x] Edit CoreController.java ✅\n3. [ ] Restart app: cd core && mvn clean spring-boot:run\n4. [ ] Test POST succeeds (201 Created)\n5. [ ] Verify GET /api/catalog/products lists prod-2\n\n**Next:** Restart app, POST JSON.

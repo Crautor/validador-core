@@ -61,3 +61,4 @@ public interface ICatalogService {
      * @return ProductDTO do produto criado
      */
     ProductDTO createProduct(ProductDTO product);
+}
